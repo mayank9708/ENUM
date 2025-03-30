@@ -39,4 +39,4 @@ with open(output_filename, 'w') as f:
     for subdomain in discovered_subdomains:
         print(subdomain, file=f)
 
-print(f"\n[✔] Scan Complete. Results saved in '{output_filename}'.")
+
