@@ -21,7 +21,7 @@ def scan(ip , result_queue):
         clients.append(client_info)
     
     result_queue.put(clients)
-    return clients
+   
 
 def print_result(result):
     print('IP' + " "*20 + 'MAC' + " "*20 + 'Hostname')
@@ -49,7 +49,7 @@ def main (cidr):
 	while not results_queue.empty():
 		all_clients.extend(result_queue.get())
 	
-	print(result(all_clients))
+	print_result(all_clients)
 
 if __name__ = '__main__'
 	cidr = input("enter network ip address:")
